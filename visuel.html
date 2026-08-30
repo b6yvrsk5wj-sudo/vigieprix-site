@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Visuel ComeUp — VigiePrix</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#eef2f9;
+    font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;
+  }
+  /* format 1200x750 : proportions adaptees aux vignettes ComeUp */
+  .carte{
+    width:1200px;height:750px;background:#fff;border-radius:18px;
+    box-shadow:0 18px 50px rgba(18,33,58,.16);
+    padding:44px 48px;display:flex;flex-direction:column;
+  }
+  .entete{display:flex;justify-content:space-between;align-items:baseline;
+          border-bottom:2px solid #12213a;padding-bottom:16px}
+  .marque{font-size:24px;font-weight:800;letter-spacing:-.4px;color:#12213a}
+  .marque span{color:#1b4fd8}
+  .date{font-size:14px;color:#5a6b85}
+
+  h1{font-size:34px;letter-spacing:-.7px;color:#12213a;margin:30px 0 8px;line-height:1.2}
+  .sous{font-size:17px;color:#5a6b85;margin-bottom:26px}
+
+  .corps{display:flex;gap:34px;flex:1;align-items:flex-start}
+
+  table{border-collapse:collapse;flex:1;font-variant-numeric:tabular-nums}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid #e2e8f2;font-size:16px}
+  th{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:#5a6b85;font-weight:700}
+  td.n{text-align:right;font-weight:600}
+  .vous{color:#12213a}
+  .eux{color:#12213a}
+  .plus{color:#b3341f;font-weight:700}
+  .moins{color:#0f7a4a;font-weight:700}
+
+  .tel{
+    width:300px;flex:none;background:#12213a;border-radius:26px;padding:14px;
+  }
+  .ecran{background:#0f1b2f;border-radius:16px;padding:16px 14px;min-height:250px}
+  .appli{font-size:12px;color:#8ea3c4;margin-bottom:12px;letter-spacing:.4px}
+  .bulle{
+    background:#1b4fd8;color:#fff;border-radius:14px 14px 14px 4px;
+    padding:13px 15px;font-size:14px;line-height:1.45;
+  }
+  .bulle b{display:block;margin-bottom:6px;font-size:14px}
+  .bulle .prix{font-size:16px;font-weight:700}
+  .heure{font-size:11px;color:#8ea3c4;margin-top:8px;text-align:right}
+
+  .pied{margin-top:28px;padding-top:18px;border-top:1px solid #e2e8f2;
+        display:flex;justify-content:space-between;align-items:center}
+  .pied p{font-size:15px;color:#5a6b85}
+  .pied strong{color:#12213a}
+  .site{font-size:17px;font-weight:700;color:#1b4fd8}
+</style>
+</head>
+<body>
+
+<div class="carte">
+
+  <div class="entete">
+    <div class="marque">Vigie<span>Prix</span></div>
+    <div class="date">Relevé du 30 août 2026, 14 h 00</div>
+  </div>
+
+  <h1>Vos prix face à vos concurrents, référence par référence</h1>
+  <p class="sous">Exemple réel : un même produit relevé chez deux boutiques françaises.</p>
+
+  <div class="corps">
+
+    <table>
+      <thead>
+        <tr><th>Référence</th><th class="n">Boutique A</th><th class="n">Boutique B</th><th class="n">Écart</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Taille 2500</td><td class="n vous">160,00 €</td><td class="n eux">170,67 €</td><td class="n plus">+6,7 %</td></tr>
+        <tr><td>Taille C2500 S</td><td class="n vous">160,00 €</td><td class="n eux">176,49 €</td><td class="n plus">+10,3 %</td></tr>
+        <tr><td>Taille 4000</td><td class="n vous">172,00 €</td><td class="n eux">189,10 €</td><td class="n plus">+9,9 %</td></tr>
+        <tr><td>Taille C3000 HG</td><td class="n vous">184,96 €</td><td class="n eux">173,58 €</td><td class="n moins">−6,2 %</td></tr>
+        <tr><td>Taille C5000 XG</td><td class="n vous">194,95 €</td><td class="n eux">180,37 €</td><td class="n moins">−7,5 %</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tel">
+      <div class="ecran">
+        <div class="appli">▲ Alerte VigiePrix</div>
+        <div class="bulle">
+          <b>🔔 Changement de prix</b>
+          Un concurrent vient de baisser sur la taille C3000 HG.
+          <div class="prix">184,96 € → 173,58 €</div>
+        </div>
+        <div class="heure">14:02</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pied">
+    <p><strong>14 références comparées</strong> sur ce seul produit — chaque appariement vérifié à la main.</p>
+    <div class="site">vigieprix.fr</div>
+  </div>
+
+</div>
+
+</body>
+</html>
