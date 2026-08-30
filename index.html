@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VigiePrix — surveillance des prix de vos concurrents</title>
+<meta name="description" content="Un outil qui surveille en continu les prix de vos concurrents et vous alerte dès qu'ils bougent. Installation sur mesure, alertes sur votre téléphone.">
+<style>
+  :root{
+    --encre:#12213a;
+    --gris:#5a6b85;
+    --trait:#e2e8f2;
+    --fond:#ffffff;
+    --doux:#f6f8fc;
+    --accent:#1b4fd8;
+    --vert:#0f7a4a;
+    --rouge:#b3341f;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--fond); color:var(--encre);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:720px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.25;margin:0}
+  a{color:var(--accent)}
+
+  header{padding:44px 0 0}
+  .marque{font-weight:700;font-size:19px;letter-spacing:-.2px}
+  .marque span{color:var(--accent)}
+
+  .hero{padding:56px 0 48px;border-bottom:1px solid var(--trait)}
+  .hero h1{font-size:36px;letter-spacing:-.7px;margin-bottom:18px}
+  .hero p{font-size:19px;color:var(--gris);margin:0}
+
+  section{padding:48px 0;border-bottom:1px solid var(--trait)}
+  section h2{font-size:22px;letter-spacing:-.3px;margin-bottom:22px}
+
+  .etapes{list-style:none;padding:0;margin:0;display:grid;gap:20px}
+  .etapes li{display:flex;gap:16px;align-items:flex-start}
+  .num{
+    flex:none;width:28px;height:28px;border-radius:50%;background:var(--doux);
+    color:var(--accent);font-weight:700;font-size:14px;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;
+  }
+  .etapes strong{display:block}
+  .etapes span{color:var(--gris)}
+
+  .preuve{background:var(--doux);border:1px solid var(--trait);border-radius:12px;padding:22px;margin-top:6px}
+  .preuve .chapo{font-size:14px;color:var(--gris);margin:0 0 16px}
+  .tableau{width:100%;overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--trait);white-space:nowrap}
+  th{font-size:13px;text-transform:uppercase;letter-spacing:.4px;color:var(--gris);font-weight:600}
+  td.n{text-align:right}
+  .plus{color:var(--rouge);font-weight:600}
+  .moins{color:var(--vert);font-weight:600}
+  .note{font-size:13.5px;color:var(--gris);margin:16px 0 0}
+
+  .prix{display:grid;gap:14px}
+  .ligne{display:flex;justify-content:space-between;gap:20px;align-items:baseline;
+         padding-bottom:14px;border-bottom:1px solid var(--trait)}
+  .ligne:last-child{border-bottom:0;padding-bottom:0}
+  .ligne b{font-size:17px;white-space:nowrap}
+  .ligne em{font-style:normal;color:var(--gris);font-size:15px}
+
+  .contact p{margin:0 0 10px}
+  .contact a{font-weight:600;text-decoration:none}
+  .contact a:hover{text-decoration:underline}
+
+  footer{padding:32px 0 56px;font-size:13px;color:var(--gris)}
+  footer p{margin:0 0 6px}
+
+  @media (max-width:560px){
+    .hero h1{font-size:29px}
+    .hero p{font-size:17px}
+    .ligne{flex-direction:column;gap:4px}
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header>
+    <div class="marque">Vigie<span>Prix</span></div>
+  </header>
+
+  <div class="hero">
+    <h1>Vos concurrents ont baissé leurs prix. Vous l'apprenez quand ?</h1>
+    <p>Je surveille en continu les prix de vos concurrents et je vous préviens
+       sur votre téléphone dès qu'un tarif bouge. Pas de tableau à remplir,
+       pas de vérification manuelle le matin.</p>
+  </div>
+
+  <section>
+    <h2>Comment ça marche</h2>
+    <ol class="etapes">
+      <li>
+        <div class="num">1</div>
+        <div>
+          <strong>On choisit ensemble vos produits et vos concurrents</strong>
+          <span>Une seule fois, au démarrage. C'est vous qui savez quels articles comptent vraiment.</span>
+        </div>
+      </li>
+      <li>
+        <div class="num">2</div>
+        <div>
+          <strong>L'outil relève les prix plusieurs fois par jour</strong>
+          <span>Référence par référence, taille par taille. Jamais une estimation : uniquement le prix réellement affiché.</span>
+        </div>
+      </li>
+      <li>
+        <div class="num">3</div>
+        <div>
+          <strong>Vous recevez un message dès qu'un prix change</strong>
+          <span>« Le concurrent est passé de 179,95 € à 160 € sur cette référence. » Vous décidez, en connaissance de cause.</span>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Un relevé réel</h2>
+    <div class="preuve">
+      <p class="chapo">Deux boutiques françaises, le même moulinet, relevé le 30 août 2026.
+         Les noms sont masqués&nbsp;; les chiffres, eux, sont bruts.</p>
+      <div class="tableau">
+        <table>
+          <thead>
+            <tr><th>Taille</th><th class="n">Boutique A</th><th class="n">Boutique B</th><th class="n">Écart</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2500</td><td class="n">160,00 €</td><td class="n">170,67 €</td><td class="n plus">+6,7 %</td></tr>
+            <tr><td>C2500 S</td><td class="n">160,00 €</td><td class="n">176,49 €</td><td class="n plus">+10,3 %</td></tr>
+            <tr><td>4000</td><td class="n">172,00 €</td><td class="n">189,10 €</td><td class="n plus">+9,9 %</td></tr>
+            <tr><td>C3000 HG</td><td class="n">184,96 €</td><td class="n">173,58 €</td><td class="n moins">−6,2 %</td></tr>
+            <tr><td>C5000 XG</td><td class="n">194,95 €</td><td class="n">180,37 €</td><td class="n moins">−7,5 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Sur ce seul produit, 14 tailles ont été comparées et les écarts vont
+         dans les deux sens. C'est tout l'intérêt : sans relevé, aucune des deux boutiques
+         ne sait sur quelles références elle décroche.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Ce que ça coûte</h2>
+    <div class="prix">
+      <div class="ligne">
+        <em>Installation — choix des références, mise en route, réglages</em>
+        <b>390 € une fois</b>
+      </div>
+      <div class="ligne">
+        <em>Surveillance et alertes — je m'assure que ça tourne, j'adapte quand un site change</em>
+        <b>69 € par mois</b>
+      </div>
+      <div class="ligne">
+        <em>Première semaine d'essai, sans engagement</em>
+        <b>gratuite</b>
+      </div>
+    </div>
+    <p class="note">Sans engagement de durée : vous arrêtez quand vous voulez.
+       Certains sites protègent leurs pages et ne peuvent pas être suivis&nbsp;;
+       je le vérifie avant de vous proposer quoi que ce soit, et je vous le dis franchement.</p>
+  </section>
+
+  <section class="contact">
+    <h2>Me joindre</h2>
+    <p>Baptiste Hollertt</p>
+    <p><a href="mailto:baptiste@vigieprix.fr">baptiste@vigieprix.fr</a></p>
+    <p class="note">Je réponds à tous les messages sous 24&nbsp;heures.
+       Si vous préférez qu'on se parle de vive voix, dites-le-moi dans votre message
+       et je vous rappelle.</p>
+    <p class="note">Écrivez-moi le nom de votre boutique et de vos deux principaux concurrents :
+       je vous renvoie un relevé réel sur trois de vos produits, gratuitement et sans engagement.</p>
+  </section>
+
+  <footer>
+    <p><strong>Mentions légales</strong></p>
+    <p>VigiePrix — Baptiste Hollertt, entrepreneur individuel. SIRET : à compléter.</p>
+    <p>Contact : baptiste@vigieprix.fr</p>
+    <p>Hébergement : GitHub Pages — GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+    <p>Ce site ne dépose aucun cookie et ne collecte aucune donnée de navigation.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
