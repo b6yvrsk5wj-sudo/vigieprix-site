@@ -5,94 +5,161 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VigiePrix — surveillance des prix de vos concurrents</title>
 <meta name="description" content="Un outil qui surveille en continu les prix de vos concurrents et vous alerte dès qu'ils bougent. Installation sur mesure, alertes sur votre téléphone.">
+<meta property="og:title" content="VigiePrix — surveillance des prix de vos concurrents">
+<meta property="og:description" content="Vos concurrents ont baissé leurs prix. Vous l'apprenez quand ?">
+<meta property="og:url" content="https://vigieprix.fr/">
+<meta property="og:type" content="website">
 <style>
   :root{
+    --nuit:#0d1b33;
+    --nuit-clair:#16294a;
     --encre:#12213a;
     --gris:#5a6b85;
+    --gris-clair:#8496b3;
     --trait:#e2e8f2;
     --fond:#ffffff;
-    --doux:#f6f8fc;
+    --doux:#f5f8fd;
     --accent:#1b4fd8;
+    --accent-clair:#4b7bf5;
+    --alerte:#e8a33d;
     --vert:#0f7a4a;
-    --rouge:#b3341f;
+    --rouge:#c2401f;
   }
-  *{box-sizing:border-box}
+  *{box-sizing:border-box;margin:0;padding:0}
   body{
-    margin:0; background:var(--fond); color:var(--encre);
+    background:var(--fond); color:var(--encre);
     font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     -webkit-font-smoothing:antialiased;
   }
-  .page{max-width:720px;margin:0 auto;padding:0 24px}
-  h1,h2,h3{line-height:1.25;margin:0}
+  .page{max-width:760px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.2;letter-spacing:-.5px}
   a{color:var(--accent)}
 
-  header{padding:44px 0 0}
-  .marque{font-weight:700;font-size:19px;letter-spacing:-.2px}
-  .marque span{color:var(--accent)}
+  /* ---------------------------------------------------------------- barre */
+  .barre{background:var(--nuit);padding:18px 0}
+  .barre .page{display:flex;justify-content:space-between;align-items:center}
+  .marque{font-size:19px;font-weight:800;color:#fff;letter-spacing:-.3px}
+  .marque span{color:var(--accent-clair)}
+  .veille{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gris-clair)}
+  .point{
+    width:8px;height:8px;border-radius:50%;background:#3ecf7a;
+    box-shadow:0 0 0 0 rgba(62,207,122,.7);animation:pulse 2.4s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(62,207,122,.6)}
+    70%{box-shadow:0 0 0 9px rgba(62,207,122,0)}
+    100%{box-shadow:0 0 0 0 rgba(62,207,122,0)}
+  }
 
-  .hero{padding:56px 0 48px;border-bottom:1px solid var(--trait)}
-  .hero h1{font-size:36px;letter-spacing:-.7px;margin-bottom:18px}
-  .hero p{font-size:19px;color:var(--gris);margin:0}
+  /* ----------------------------------------------------------------- hero */
+  .hero{background:var(--nuit);color:#fff;padding:56px 0 64px}
+  .hero h1{font-size:40px;margin-bottom:20px}
+  .hero h1 em{font-style:normal;color:var(--accent-clair)}
+  .hero p{font-size:19px;color:#b9c7dd;max-width:600px}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+  .bouton{
+    display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
+    padding:14px 24px;border-radius:9px;font-weight:600;font-size:16px;
+    transition:background .15s;
+  }
+  .bouton:hover{background:var(--accent-clair)}
+  .bouton.creux{background:transparent;border:1px solid #37507c;color:#dce5f4}
+  .bouton.creux:hover{background:#1c3055}
 
-  section{padding:48px 0;border-bottom:1px solid var(--trait)}
-  section h2{font-size:22px;letter-spacing:-.3px;margin-bottom:22px}
+  /* -------------------------------------------------------------- section */
+  section{padding:56px 0;border-bottom:1px solid var(--trait)}
+  section h2{font-size:24px;margin-bottom:26px}
+  .chapo{color:var(--gris);margin:-16px 0 26px}
 
-  .etapes{list-style:none;padding:0;margin:0;display:grid;gap:20px}
+  .etapes{list-style:none;display:grid;gap:22px}
   .etapes li{display:flex;gap:16px;align-items:flex-start}
   .num{
-    flex:none;width:28px;height:28px;border-radius:50%;background:var(--doux);
+    flex:none;width:30px;height:30px;border-radius:50%;background:var(--doux);
+    border:1px solid var(--trait);
     color:var(--accent);font-weight:700;font-size:14px;
-    display:flex;align-items:center;justify-content:center;margin-top:2px;
+    display:flex;align-items:center;justify-content:center;margin-top:1px;
   }
-  .etapes strong{display:block}
+  .etapes strong{display:block;margin-bottom:2px}
   .etapes span{color:var(--gris)}
 
-  .preuve{background:var(--doux);border:1px solid var(--trait);border-radius:12px;padding:22px;margin-top:6px}
-  .preuve .chapo{font-size:14px;color:var(--gris);margin:0 0 16px}
-  .tableau{width:100%;overflow-x:auto}
-  table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
-  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--trait);white-space:nowrap}
-  th{font-size:13px;text-transform:uppercase;letter-spacing:.4px;color:var(--gris);font-weight:600}
-  td.n{text-align:right}
-  .plus{color:var(--rouge);font-weight:600}
-  .moins{color:var(--vert);font-weight:600}
-  .note{font-size:13.5px;color:var(--gris);margin:16px 0 0}
+  /* --------------------------------------------------------------- preuve */
+  .preuve{display:flex;gap:26px;align-items:flex-start}
+  .tableau{flex:1;min-width:0;overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:15px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--trait);white-space:nowrap}
+  th{font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--gris);font-weight:700}
+  td.n{text-align:right;font-weight:600}
+  .plus{color:var(--rouge);font-weight:700}
+  .moins{color:var(--vert);font-weight:700}
 
-  .prix{display:grid;gap:14px}
-  .ligne{display:flex;justify-content:space-between;gap:20px;align-items:baseline;
-         padding-bottom:14px;border-bottom:1px solid var(--trait)}
-  .ligne:last-child{border-bottom:0;padding-bottom:0}
-  .ligne b{font-size:17px;white-space:nowrap}
-  .ligne em{font-style:normal;color:var(--gris);font-size:15px}
+  .tel{width:250px;flex:none;background:var(--nuit);border-radius:22px;padding:12px}
+  .ecran{background:#08111f;border-radius:14px;padding:14px 12px}
+  .appli{font-size:11px;color:var(--gris-clair);margin-bottom:10px;letter-spacing:.3px}
+  .bulle{background:var(--accent);color:#fff;border-radius:12px 12px 12px 4px;padding:12px 13px;font-size:13.5px;line-height:1.45}
+  .bulle b{display:block;margin-bottom:5px}
+  .bulle .montant{font-size:15px;font-weight:700;margin-top:4px}
+  .heure{font-size:10.5px;color:var(--gris-clair);margin-top:7px;text-align:right}
 
-  .contact p{margin:0 0 10px}
+  .note{font-size:14px;color:var(--gris);margin-top:18px}
+
+  /* ----------------------------------------------------------------- prix */
+  .offres{display:grid;gap:14px}
+  .offre{
+    display:flex;justify-content:space-between;gap:20px;align-items:baseline;
+    padding:16px 18px;border:1px solid var(--trait);border-radius:10px;background:var(--doux);
+  }
+  .offre em{font-style:normal;color:var(--gris);font-size:15px}
+  .offre b{font-size:18px;white-space:nowrap}
+  .offre.gratuit{background:#f0f7f2;border-color:#cfe6d8}
+  .offre.gratuit b{color:var(--vert)}
+
+  /* -------------------------------------------------------------- contact */
+  .contact p{margin-bottom:8px}
+  .contact .gros{font-size:18px;font-weight:600}
   .contact a{font-weight:600;text-decoration:none}
   .contact a:hover{text-decoration:underline}
 
-  footer{padding:32px 0 56px;font-size:13px;color:var(--gris)}
-  footer p{margin:0 0 6px}
+  footer{padding:34px 0 60px;font-size:13px;color:var(--gris)}
+  footer p{margin-bottom:5px}
 
-  @media (max-width:560px){
-    .hero h1{font-size:29px}
+  @media (max-width:640px){
+    .hero{padding:44px 0 50px}
+    .hero h1{font-size:30px}
     .hero p{font-size:17px}
-    .ligne{flex-direction:column;gap:4px}
+    .preuve{flex-direction:column}
+    .tel{width:100%;max-width:290px;align-self:center}
+    .offre{flex-direction:column;gap:4px}
+    .veille{display:none}
   }
 </style>
 </head>
 <body>
 
-<div class="page">
-
-  <header>
+<div class="barre">
+  <div class="page">
     <div class="marque">Vigie<span>Prix</span></div>
-  </header>
-
-  <div class="hero">
-    <h1>Vos concurrents ont baissé leurs prix. Vous l'apprenez quand ?</h1>
-    <p>Je surveille en continu les prix de vos concurrents et je vous préviens
-       sur votre téléphone dès qu'un tarif bouge. Pas de tableau à remplir,
-       pas de vérification manuelle le matin.</p>
+    <div class="veille"><span class="point"></span> surveillance active</div>
   </div>
+</div>
+
+<div class="hero">
+  <div class="page">
+    <h1>Vos concurrents ont baissé leurs prix.<br><em>Vous l'apprenez quand ?</em></h1>
+    <p>Je surveille en continu les prix de vos concurrents et je vous préviens sur votre
+       téléphone dès qu'un tarif bouge. Pas de tableau à remplir, pas de vérification
+       manuelle le matin.</p>
+    <div class="actions">
+      <a class="bouton" href="mailto:baptiste@vigieprix.fr?subject=Relev%C3%A9%20gratuit%20pour%20ma%20boutique&body=Bonjour%2C%0A%0AVoici%20l%27adresse%20de%20ma%20boutique%20%3A%20%0AEt%20celles%20de%20mes%20deux%20principaux%20concurrents%20%3A%20%0A%0AMerci%20%21">
+        Demander un relevé gratuit
+      </a>
+      <!-- BOUTON COMEUP : decommenter et remplacer l'adresse quand la fiche est en ligne
+      <a class="bouton creux" href="https://comeup.com/fr/@tonpseudo">Commander sur ComeUp</a>
+      -->
+    </div>
+  </div>
+</div>
+
+<div class="page">
 
   <section>
     <h2>Comment ça marche</h2>
@@ -115,7 +182,7 @@
         <div class="num">3</div>
         <div>
           <strong>Vous recevez un message dès qu'un prix change</strong>
-          <span>« Le concurrent est passé de 179,95 € à 160 € sur cette référence. » Vous décidez, en connaissance de cause.</span>
+          <span>Vous décidez de vous aligner ou non, en connaissance de cause — pas trois semaines plus tard.</span>
         </div>
       </li>
     </ol>
@@ -123,9 +190,10 @@
 
   <section>
     <h2>Un relevé réel</h2>
+    <p class="chapo">Deux boutiques françaises, le même moulinet, relevé le 30 août 2026.
+       Les noms sont masqués ; les chiffres, eux, sont bruts.</p>
+
     <div class="preuve">
-      <p class="chapo">Deux boutiques françaises, le même moulinet, relevé le 30 août 2026.
-         Les noms sont masqués&nbsp;; les chiffres, eux, sont bruts.</p>
       <div class="tableau">
         <table>
           <thead>
@@ -140,41 +208,69 @@
           </tbody>
         </table>
       </div>
-      <p class="note">Sur ce seul produit, 14 tailles ont été comparées et les écarts vont
-         dans les deux sens. C'est tout l'intérêt : sans relevé, aucune des deux boutiques
-         ne sait sur quelles références elle décroche.</p>
+
+      <div class="tel">
+        <div class="ecran">
+          <div class="appli">▲ Alerte VigiePrix</div>
+          <div class="bulle">
+            <b>🔔 Changement de prix</b>
+            Un concurrent vient de baisser sur la taille C3000 HG.
+            <div class="montant">184,96 € → 173,58 €</div>
+          </div>
+          <div class="heure">14:02</div>
+        </div>
+      </div>
     </div>
+
+    <p class="note">Sur ce seul produit, <strong>14 tailles ont été comparées</strong> et les écarts
+       vont dans les deux sens. C'est tout l'intérêt : sans relevé, aucune des deux boutiques
+       ne sait sur quelles références elle décroche.</p>
+  </section>
+
+  <section>
+    <h2>Pourquoi ce n'est pas qu'un robot</h2>
+    <p class="chapo">La difficulté n'est pas de lire un prix, c'est de comparer les bons produits.</p>
+    <p>Une page cache souvent quinze déclinaisons à des prix différents, et le prix affiché
+       est en général celui de la moins chère. Comparer une taille 1000 avec une taille 2500
+       donne des écarts qui ne veulent rien dire.</p>
+    <p class="note">Je vérifie chaque appariement un par un avant de vous livrer quoi que ce soit.
+       C'est ce travail-là que les logiciels automatiques ne font pas — et c'est pour ça que
+       leurs rapports finissent au fond d'un tiroir.</p>
   </section>
 
   <section>
     <h2>Ce que ça coûte</h2>
-    <div class="prix">
-      <div class="ligne">
+    <div class="offres">
+      <div class="offre">
         <em>Installation — choix des références, mise en route, réglages</em>
         <b>390 € une fois</b>
       </div>
-      <div class="ligne">
+      <div class="offre">
         <em>Surveillance et alertes — je m'assure que ça tourne, j'adapte quand un site change</em>
         <b>69 € par mois</b>
       </div>
-      <div class="ligne">
+      <div class="offre gratuit">
         <em>Première semaine d'essai, sans engagement</em>
         <b>gratuite</b>
       </div>
     </div>
     <p class="note">Sans engagement de durée : vous arrêtez quand vous voulez.
-       Certains sites protègent leurs pages et ne peuvent pas être suivis&nbsp;;
-       je le vérifie avant de vous proposer quoi que ce soit, et je vous le dis franchement.</p>
+       Certains sites protègent leurs pages et ne peuvent pas être suivis ; je le vérifie
+       avant de vous proposer quoi que ce soit, et je vous le dis franchement.</p>
   </section>
 
   <section class="contact">
     <h2>Me joindre</h2>
-    <p>Baptiste Hollertt</p>
+    <p class="gros">Baptiste Hollertt</p>
     <p><a href="mailto:baptiste@vigieprix.fr">baptiste@vigieprix.fr</a></p>
-    <p class="note">Je réponds à tous les messages sous 24&nbsp;heures.
-       Si vous préférez qu'on se parle de vive voix, dites-le-moi dans votre message
-       et je vous rappelle.</p>
-    <p class="note">Écrivez-moi le nom de votre boutique et de vos deux principaux concurrents :
+    <p class="note">Je réponds à tous les messages sous 24 heures. Si vous préférez qu'on se
+       parle de vive voix, dites-le-moi dans votre message et je vous rappelle.</p>
+    <div class="actions">
+      <a class="bouton" href="mailto:baptiste@vigieprix.fr?subject=Relev%C3%A9%20gratuit%20pour%20ma%20boutique&body=Bonjour%2C%0A%0AVoici%20l%27adresse%20de%20ma%20boutique%20%3A%20%0AEt%20celles%20de%20mes%20deux%20principaux%20concurrents%20%3A%20%0A%0AMerci%20%21">
+        Recevoir un relevé gratuit
+      </a>
+    </div>
+    <p class="note">Donnez-moi le nom de votre boutique et de vos deux principaux concurrents :
        je vous renvoie un relevé réel sur trois de vos produits, gratuitement et sans engagement.</p>
   </section>
 
