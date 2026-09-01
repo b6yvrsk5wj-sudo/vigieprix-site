@@ -9,6 +9,7 @@
 <meta property="og:description" content="Vos concurrents ont baissé leurs prix. Vous l'apprenez quand ?">
 <meta property="og:url" content="https://vigieprix.fr/">
 <meta property="og:type" content="website">
+<link rel="icon" href="/logo-carre.svg" type="image/svg+xml">
 <style>
   :root{
     --nuit:#0d1b33;
@@ -38,7 +39,9 @@
   /* ---------------------------------------------------------------- barre */
   .barre{background:var(--nuit);padding:18px 0}
   .barre .page{display:flex;justify-content:space-between;align-items:center}
-  .marque{font-size:19px;font-weight:800;color:#fff;letter-spacing:-.3px}
+  .marque{font-size:19px;font-weight:800;color:#fff;letter-spacing:-.3px;
+          display:flex;align-items:center;gap:10px;text-decoration:none}
+  .marque img{width:30px;height:30px;display:block}
   .marque span{color:var(--accent-clair)}
   .veille{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gris-clair)}
   .point{
@@ -137,7 +140,7 @@
 
 <div class="barre">
   <div class="page">
-    <div class="marque">Vigie<span>Prix</span></div>
+    <a class="marque" href="/"><img src="/logo-carre.svg" alt=""><span style="color:#fff">Vigie</span><span>Prix</span></a>
     <div class="veille"><span class="point"></span> surveillance active</div>
   </div>
 </div>
@@ -152,6 +155,7 @@
       <a class="bouton" href="mailto:baptiste@vigieprix.fr?subject=Relev%C3%A9%20gratuit%20pour%20ma%20boutique&body=Bonjour%2C%0A%0AVoici%20l%27adresse%20de%20ma%20boutique%20%3A%20%0AEt%20celles%20de%20mes%20deux%20principaux%20concurrents%20%3A%20%0A%0AMerci%20%21">
         Demander un relevé gratuit
       </a>
+      <a class="bouton creux" href="/demo.html">Voir un relevé en direct</a>
       <!-- BOUTON COMEUP : decommenter et remplacer l'adresse quand la fiche est en ligne
       <a class="bouton creux" href="https://comeup.com/fr/@tonpseudo">Commander sur ComeUp</a>
       -->
@@ -225,6 +229,9 @@
     <p class="note">Sur ce seul produit, <strong>14 tailles ont été comparées</strong> et les écarts
        vont dans les deux sens. C'est tout l'intérêt : sans relevé, aucune des deux boutiques
        ne sait sur quelles références elle décroche.</p>
+    <p class="note">Ce tableau est figé. Pour voir le même relevé <strong>refait automatiquement
+       plusieurs fois par jour</strong>, avec la date et l'heure du dernier passage :
+       <a href="/demo.html">voir le relevé en direct</a>.</p>
   </section>
 
   <section>

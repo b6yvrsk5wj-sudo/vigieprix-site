@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" width="260" height="64" role="img" aria-label="VigiePrix">
+  <!-- Le V est une courbe de prix : une chute, puis une remontee.
+       Le point marque l'instant ou l'alerte part. -->
+  <rect x="0" y="4" width="56" height="56" rx="14" fill="#0d1b33"/>
+  <polyline points="13,20 28,44 43,20"
+            fill="none" stroke="#4b7bf5" stroke-width="5.5"
+            stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="28" cy="44" r="5.5" fill="#e8a33d"/>
+  <circle cx="28" cy="44" r="10" fill="none" stroke="#e8a33d" stroke-width="1.6" opacity=".45"/>
+
+  <text x="72" y="41"
+        font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif"
+        font-size="27" font-weight="800" letter-spacing="-.8">
+    <tspan fill="#12213a">Vigie</tspan><tspan fill="#1b4fd8">Prix</tspan>
+  </text>
+</svg>

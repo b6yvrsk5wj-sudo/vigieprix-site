@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relevé en direct — VigiePrix</title>
+<meta name="description" content="Un relevé de prix réel, régénéré automatiquement plusieurs fois par jour.">
+<link rel="icon" href="/logo-carre.svg" type="image/svg+xml">
+<style>
+  :root{--nuit:#0d1b33;--encre:#12213a;--gris:#5a6b85;--gris-clair:#8496b3;--trait:#e2e8f2;
+        --doux:#f5f8fd;--accent:#1b4fd8;--accent-clair:#4b7bf5;--vert:#0f7a4a;--rouge:#c2401f}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#fff;color:var(--encre);
+       font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       -webkit-font-smoothing:antialiased}
+  .page{max-width:760px;margin:0 auto;padding:0 24px}
+  a{color:var(--accent)}
+  .barre{background:var(--nuit);padding:18px 0}
+  .barre .page{display:flex;justify-content:space-between;align-items:center}
+  .marque{font-size:19px;font-weight:800;color:#fff;letter-spacing:-.3px;text-decoration:none}
+  .marque span{color:var(--accent-clair)}
+  .veille{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gris-clair)}
+  .point{width:8px;height:8px;border-radius:50%;background:#3ecf7a;animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(62,207,122,.6)}70%{box-shadow:0 0 0 9px rgba(62,207,122,0)}100%{box-shadow:0 0 0 0 rgba(62,207,122,0)}}
+  h1{font-size:32px;letter-spacing:-.6px;margin:44px 0 14px;line-height:1.2}
+  .chapo{color:var(--gris);margin-bottom:8px}
+  .horodate{display:inline-block;background:var(--doux);border:1px solid var(--trait);
+            border-radius:8px;padding:8px 13px;font-size:14px;color:var(--gris);margin:14px 0 30px}
+  .horodate b{color:var(--encre)}
+  table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:15px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--trait);white-space:nowrap}
+  th{font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--gris);font-weight:700}
+  td.n{text-align:right;font-weight:600}
+  .cher{color:var(--rouge)}
+  .ecart{color:var(--gris);font-weight:600}
+  .tableau{overflow-x:auto}
+  .bilan{background:var(--doux);border:1px solid var(--trait);border-radius:10px;padding:18px 20px;margin:28px 0}
+  .bilan p{font-size:15px;color:var(--gris)}
+  .bilan strong{color:var(--encre)}
+  .retour{margin:36px 0 60px;font-size:15px}
+  footer{padding:26px 0 50px;font-size:13px;color:var(--gris);border-top:1px solid var(--trait)}
+</style>
+</head>
+<body>
+
+<div class="barre">
+  <div class="page">
+    <a class="marque" href="/">Vigie<span>Prix</span></a>
+    <div class="veille"><span class="point"></span> relevé automatique</div>
+  </div>
+</div>
+
+<div class="page">
+  <h1>Relevé en direct</h1>
+  <p class="chapo">Cette page n'est pas une capture d'écran. Elle est régénérée automatiquement
+     par l'outil, plusieurs fois par jour, à partir des prix réellement affichés en ligne.</p>
+  <div class="horodate">Dernier relevé : <b>01 septembre 2026 à 21:35</b></div>
+
+  <p class="chapo">Produit suivi : <strong>Moulinet spinning Shimano Stradic FM</strong> —
+     14 tailles présentes
+     chez les deux revendeurs. Les noms des boutiques sont masqués&nbsp;; les prix, eux, sont bruts.</p>
+
+  <div class="tableau">
+    <table>
+      <thead>
+        <tr><th>Taille</th><th class="n">Boutique A</th><th class="n">Boutique B</th><th class="n">Écart</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1000</td><td class="n cher">179,95 €</td><td class="n">170,67 €</td><td class="n ecart">+5.4 %</td></tr>
+        <tr><td>1000HG</td><td class="n">163,00 €</td><td class="n cher">170,67 €</td><td class="n ecart">+4.7 %</td></tr>
+        <tr><td>2500</td><td class="n">160,00 €</td><td class="n cher">170,67 €</td><td class="n ecart">+6.7 %</td></tr>
+        <tr><td>2500HG</td><td class="n">163,00 €</td><td class="n cher">170,67 €</td><td class="n ecart">+4.7 %</td></tr>
+        <tr><td>2500S</td><td class="n">160,00 €</td><td class="n cher">170,67 €</td><td class="n ecart">+6.7 %</td></tr>
+        <tr><td>4000</td><td class="n">172,00 €</td><td class="n cher">189,10 €</td><td class="n ecart">+9.9 %</td></tr>
+        <tr><td>4000XG</td><td class="n">184,96 €</td><td class="n cher">189,10 €</td><td class="n ecart">+2.2 %</td></tr>
+        <tr><td>C2000HG</td><td class="n">160,00 €</td><td class="n cher">175,52 €</td><td class="n ecart">+9.7 %</td></tr>
+        <tr><td>C2000S</td><td class="n cher">179,95 €</td><td class="n">176,49 €</td><td class="n ecart">+2.0 %</td></tr>
+        <tr><td>C2500S</td><td class="n">160,00 €</td><td class="n cher">176,49 €</td><td class="n ecart">+10.3 %</td></tr>
+        <tr><td>C3000</td><td class="n">166,99 €</td><td class="n cher">173,58 €</td><td class="n ecart">+3.9 %</td></tr>
+        <tr><td>C3000HG</td><td class="n cher">184,96 €</td><td class="n">173,58 €</td><td class="n ecart">+6.6 %</td></tr>
+        <tr><td>C3000XG</td><td class="n">172,00 €</td><td class="n cher">173,58 €</td><td class="n ecart">+0.9 %</td></tr>
+        <tr><td>C5000XG</td><td class="n cher">194,95 €</td><td class="n">180,37 €</td><td class="n ecart">+8.1 %</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="bilan">
+    <p>Sur ces <strong>14 références strictement identiques</strong>, l'écart moyen
+       est de <strong>5.8 %</strong>. Chaque taille est appariée une par une :
+       comparer une taille 1000 avec une taille 2500 donnerait un écart qui ne veut rien dire.</p>
+  </div>
+
+  <p class="retour">C'est exactement ce que je mets en place pour votre boutique.
+     <a href="/">Revenir à l'accueil</a> ou
+     <a href="mailto:baptiste@vigieprix.fr">demander un relevé gratuit</a>.</p>
+
+  <footer>
+    <p>VigiePrix — Baptiste Hollertt · baptiste@vigieprix.fr</p>
+  </footer>
+</div>
+
+</body>
+</html>
